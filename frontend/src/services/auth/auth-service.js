@@ -1,20 +1,17 @@
+import { httpClient } from "../../infra/http/http-client";
+
 export const authService = {
   async login(body) {
-    const response = await fetch(
+    const response = await httpClient(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/login`,
       {
         method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        body,
       }
     );
 
-    if (!response.ok) throw new Error("Unauthorized!");
+    if (!response.ok) throw new Error("Unknown error!");
 
-    const data = await response.json();
-
-    return data;
+    return response.data;
   },
 };
