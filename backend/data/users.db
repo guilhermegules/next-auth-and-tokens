@@ -1,3 +1,4 @@
-{"username":"omariosouto","name":"Mario Souto","email":"contato@alura.com.br","password":"safepassword","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDU5MDcxMTAsImV4cCI6MTY0NjUxMTkxMCwic3ViIjoiU05ZOGUyVDgwaUFpNjg3cyJ9.LbaOWoh330sizYU-_xIJPmhwsoVYXC9qIrbTLtpBnZU","_id":"SNY8e2T80iAi687s"}
+{"username":"omariosouto","name":"Mario Souto","email":"contato@alura.com.br","password":"safepassword","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQzODAzOTQsImV4cCI6MTY5NDk4NTE5NCwic3ViIjoiU05ZOGUyVDgwaUFpNjg3cyJ9.LODYa-dASt_tsBrDyCzpXaDO5VorozuKv2A_O_VOric","_id":"SNY8e2T80iAi687s"}
 {"username":"peas","password":"safepassword","name":"Paulo Silveira","email":"paulo@alura.com.br","_id":"pchQDUBs1jJv8br0"}
 {"$$indexCreated":{"fieldName":"username","unique":true,"sparse":false}}
+{"username":"omariosouto","name":"Mario Souto","email":"contato@alura.com.br","password":"safepassword","refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTQzODA2MzAsImV4cCI6MTY5NDk4NTQzMCwic3ViIjoiU05ZOGUyVDgwaUFpNjg3cyJ9.6AeCbkoHLOQUBmClC0dwd9Fm-3l7rXPwx3lunvKs2Do","_id":"SNY8e2T80iAi687s"}
