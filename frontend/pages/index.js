@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { authService } from "../src/services/auth/auth-service";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -22,8 +23,17 @@ export default function HomeScreen() {
   function onSubmit(event) {
     event.preventDefault();
 
-    // router.push('/auth-page-static');
-    router.push("/auth-page-ssr");
+    authService
+      .login({
+        username: values.user,
+        password: values.pass,
+      })
+      .then(() => {
+        router.push("/auth-page-ssr");
+      })
+      .catch(() => {
+        alert("User or pass are invalid!");
+      });
   }
 
   return (
