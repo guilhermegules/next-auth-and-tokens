@@ -1,4 +1,4 @@
-import { tokenService } from "../src/services/auth/token-service";
+import { withSession } from "../src/services/auth/session";
 
 function AuthPageSSR(props) {
   return (
@@ -11,10 +11,10 @@ function AuthPageSSR(props) {
 
 export default AuthPageSSR;
 
-export async function getServerSideProps(ctx) {
+export const getServerSideProps = withSession((ctx) => {
   return {
     props: {
-      token: tokenService.get(ctx),
+      session: ctx.req.session,
     },
   };
-}
+});

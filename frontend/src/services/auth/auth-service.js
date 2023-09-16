@@ -17,4 +17,21 @@ export const authService = {
 
     return response.data;
   },
+  async getSession(ctx) {
+    const token = tokenService.get(ctx);
+
+    const response = await httpClient(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/session`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) throw new Error("Unauthorized");
+
+    return response.data.data;
+  },
 };
