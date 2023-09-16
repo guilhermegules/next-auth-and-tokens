@@ -2,12 +2,16 @@ import React from "react";
 import { useRouter } from "next/router";
 import { authService } from "../src/services/auth/auth-service";
 
+const PAGE_SSR = "PAGE_SSR";
+const PAGE_STATIC = "PAGE_STATIC";
+
 export default function HomeScreen() {
   const router = useRouter();
   const [values, setValues] = React.useState({
     user: "omariosouto",
     pass: "safepassword",
   });
+  const [pageType, setPageType] = React.useState(PAGE_SSR);
 
   function handleChange(event) {
     const fieldValue = event.target.value;
@@ -29,7 +33,11 @@ export default function HomeScreen() {
         password: values.pass,
       })
       .then(() => {
-        router.push("/auth-page-ssr");
+        if (pageType === PAGE_SSR) {
+          router.push("/auth-page-ssr");
+          return;
+        }
+        router.push("/auth-page-static");
       })
       .catch(() => {
         alert("User or pass are invalid!");
@@ -53,6 +61,34 @@ export default function HomeScreen() {
           value={values.pass}
           onChange={handleChange}
         />
+        <div>
+          <label htmlFor="page-ssr">
+            Page SSR
+            <input
+              type="radio"
+              value={PAGE_SSR}
+              name="page-type"
+              id="page-ssr"
+              checked={pageType === PAGE_SSR}
+              onChange={(event) => {
+                setPageType(event.target.value);
+              }}
+            />
+          </label>
+          <label htmlFor="page-static">
+            Page Static
+            <input
+              type="radio"
+              value={PAGE_STATIC}
+              name="page-type"
+              id="page-static"
+              checked={pageType === PAGE_STATIC}
+              onChange={(event) => {
+                setPageType(event.target.value);
+              }}
+            />
+          </label>
+        </div>
         <pre>{JSON.stringify(values, null, 2)}</pre>
         <div>
           <button>Entrar</button>
