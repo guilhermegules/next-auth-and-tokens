@@ -38,6 +38,7 @@ export const authService = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        refresh: true,
       }
     );
 
