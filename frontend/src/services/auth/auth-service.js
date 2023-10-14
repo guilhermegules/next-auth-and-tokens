@@ -39,6 +39,7 @@ export const authService = {
           Authorization: `Bearer ${token}`,
         },
         refresh: true,
+        ctx,
       }
     );
 

@@ -94,6 +94,11 @@ export default function HomeScreen() {
           <button>Entrar</button>
         </div>
       </form>
+      <p>
+        <a href="/auth-page-ssr">auth-page-ssr</a>
+        <br />
+        <a href="/auth-page-static">auth-page-static</a>
+      </p>
     </div>
   );
 }

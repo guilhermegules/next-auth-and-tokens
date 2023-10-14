@@ -1,12 +1,10 @@
 import nookies from "nookies";
 import { httpClient } from "../../src/infra/http/http-client";
 import { tokenService } from "../../src/services/auth/token-service";
-
-const REFRESH_TOKEN = "REFRESH_TOKEN";
+import { REFRESH_TOKEN } from "../../src/constants/refresh-token";
 
 const controller = {
   async storeRefreshToken(req, res) {
-    console.log(req.body);
     const ctx = { req, res };
     nookies.set(ctx, REFRESH_TOKEN, req.body.refresh_token, {
       httpOnly: true,
@@ -22,7 +20,7 @@ const controller = {
   async regenerateTokens(req, res) {
     const ctx = { req, res };
     const cookies = nookies.get(ctx);
-    const refreshToken = cookies[REFRESH_TOKEN];
+    const refreshToken = cookies[REFRESH_TOKEN] || req.body.refresh_token;
 
     const refreshResponse = await httpClient(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/refresh`,
@@ -50,11 +48,27 @@ const controller = {
 
     res.json({ data: refreshResponse.data.data });
   },
+  async deleteTokens(req, res) {
+    const ctx = { req, res };
+    nookies.destroy(ctx, REFRESH_TOKEN, {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+    });
+    res.json({
+      data: {
+        message: "delete with success!",
+        status: 200,
+      },
+    });
+  },
 };
 
 const controllerBy = {
   POST: controller.storeRefreshToken,
   GET: controller.regenerateTokens,
+  PUT: controller.regenerateTokens,
+  DELETE: controller.deleteTokens,
 };
 
 export default function handler(request, response) {
